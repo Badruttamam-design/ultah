@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amelia 💖💞</title>
+    <link rel="shortcut icon" href="img/donate.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Intro Screen -->
+    <div id="intro">
+      <p>Untuk Wanita Paling Spesial di Hidupku... ❤️💞</p>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Hearts Background -->
+    <div id="hearts-container"></div>
+
+    <!-- First Question -->
+    <div id="question">
+      <h1>Apakah kamu sayang padaku? 💖💞</h1>
+      <button class="btn btn-special" onclick="showBirthdayMessage()">
+        Iya, sangat!
+      </button>
+      <button class="btn btn-secondary" onclick="showCryGif()">Tidak</button>
+    </div>
+
+    <!-- Cry GIF -->
+    <img id="cryGif" src="img/cry.gif" alt="Menangis" />
+
+    <!-- Birthday Header -->
+    <header id="ucapan" style="display: none">
+      Selamat Ulang Tahun, Sayangku! 🎉
+    </header>
+
+    <!-- Main Birthday Message -->
+    <div id="birthdayMessage" class="content-box" style="display: none">
+      <div class="emoji">🎂</div>
+      <p>Sayangku,</p>
+      <p>
+        Selamat ulang tahun, cinta. Di hari istimewamu ini, aku ingin kau tahu
+        bahwa setiap detik bersamamu adalah hadiah terindah dalam hidupku.
+      </p>
+      <p id="birthdayNumberText">
+        Semoga Allah selalu memberkahimu, memberimu kesehatan, kebahagiaan, dan
+        segala hal baik yang kau impikan.
+      </p>
+      <p>Aku bersyukur bisa mencintaimu. Aku ingin selalu bersamamu. 💖💞</p>
+      <p>Selamat ulang tahun, kekasihku. Aku mencintaimu lebih dari apapun.</p>
+      <button
+        class="btn btn-special animate__animated animate__pulse animate__infinite"
+        onclick="showGallery()"
+      >
+        Lanjut Lagi
+      </button>
+    </div>
+
+    <!-- Photo Album -->
+    <div id="photoAlbum" class="content-box">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">Sentuh Fotonya Sayangku💞</h2>
+      <div class="gallery">
+        <div class="polaroid">
+          <img
+            src="img/tah.png"
+            class="gallery-img"
+            alt="Liburan Bersama"
+            onmouseover="this.src='img/l.jpeg'"
+            onmouseout="this.src='img/tah.png'"
+            onerror="this.style.display='none'"
+          />
+          <p>💌💌💌</p>
+        </div>
+        <div class="polaroid">
+          <img
+            src="img/tah.png"
+            class="gallery-img"
+            alt="Liburan Bersama"
+            onmouseover="this.src='img/biru.jpg'"
+            onmouseout="this.src='img/tah.png'"
+            onerror="this.style.display='none'"
+          />
+          <p>💌💌💌</p>
+        </div>
+        <div class="polaroid">
+          <img
+            src="img/tah.png"
+            class="gallery-img"
+            alt="Liburan Bersama"
+            onmouseover="this.src='img/putih.jpg'"
+            onmouseout="this.src='img/tah.png'"
+            onerror="this.style.display='none'"
+          />
+          <p>💌💌💌</p>
+        </div>
+        <div class="polaroid">
+          <img
+            src="img/tah.png"
+            class="gallery-img"
+            alt="Liburan Bersama"
+            onmouseover="this.src='img/pink.png'"
+            onmouseout="this.src='img/tah.png'"
+            onerror="this.style.display='none'"
+          />
+          <p>💌💌💌</p>
+        </div>
+      </div>
+      <button class="btn btn-special" onclick="showQuiz()">Kuis Cinta</button>
+    </div>
+
+    <!-- Love Quiz -->
+    <div id="quiz" class="content-box">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">Seberapa baik kamu mengenalku?</h2>
+      <div class="question">
+        <p style="text-align: center">Makanan favoritku adalah?</p>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">
+          Cokelat Silverqueen
+        </button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">
+          Pisang Keju
+        </button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">
+          Terang Bulan
+        </button>
+      </div>
+      <div class="question" style="margin-top: 1.5rem">
+        <p style="text-align: center">
+          Aku paling suka menghabiskan waktu dengan?
+        </p>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">
+          Berdua denganmu
+        </button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">
+          Melukis
+        </button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">
+          Tidur
+        </button>
+      </div>
+      <button class="btn btn-special" onclick="showCountdown()">
+        Lihat Waktu Ultah
+      </button>
+    </div>
+
+    <!-- Countdown -->
+    <div id="countdown" class="content-box">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">Waktu ke Ulang Tahunmu Berikutnya</h2>
+      <div class="countdown" id="countdownTimer"></div>
+      <p style="text-align: center">
+        Kita akan merayakan ulang tahun bersama di masa depan!
+      </p>
+      <button
+        class="btn btn-special animate__animated animate__pulse animate__infinite"
+        onclick="showVideoMessage()"
+      >
+        Pesan Spesial untukmu
+      </button>
+    </div>
+
+    <!-- Video Message -->
+    <div id="videoMessage" class="content-box" style="display: none">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">🎥 Pesan Spesial dari Hatiku</h2>
+      <div class="video-container">
+        <video id="myVideo" class="video-small" controls>
+          <source src="img/lop.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p style="text-align: center">
+        Ini adalah pesan khusus untukmu sayang...🫶🏻🌹
+      </p>
+      <button class="btn btn-special" onclick="showLoveLetter()">
+        Baca Surat Cintaku
+      </button>
+    </div>
+
+    <!-- Love Letter -->
+    <div id="loveLetter" class="content-box">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">💌 Surat Cinta Untukmu</h2>
+      <div id="typedLetter" class="typed-text"></div>
+      <button
+        class="btn btn-special"
+        onclick="showFinalSurprise()"
+        style="display: none"
+        id="nextBtn"
+      >
+        Kejutan Terakhir
+      </button>
+    </div>
+
+    <!-- Final Surprise -->
+    <div id="finalSurprise" class="content-box">
+      <div class="emoji">🎂</div>
+      <h2 style="color: var(--black)">🎶 Untukmu, Sayangku💞</h2>
+      <div style="margin: 1.5rem 0">
+        <img
+          src="img/ll.jpeg"
+          alt="Kita Berdua"
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--pink);
+          "
+        />
+      </div>
+      <p style="text-align: center">Putarlah lagu spesial kita...💞</p>
+      <div class="music-player">
+        <audio controls style="width: 100%">
+          <source src="img/mm.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+
+      <p
+        style="
+          margin-top: 1.5rem;
+          font-size: 1.2rem;
+          color: var(--pink);
+          text-align: center;
+        "
+        class="animate__animated animate__pulse animate__infinite"
+      >
+        Aku mencintaimu lebih dari apapun di dunia ini ❤️😘🥰
+      </p>
+      <button class="btn btn-special" onclick="location.reload()">
+        Mulai dari Awal
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>Dibuat dengan cinta oleh Kekasihmu 💍🌹</footer>
+
+    <!-- Background Music (Hidden Autoplay) -->
+    <audio id="bgMusic" loop>
+      <source src="img/ul.mp3" type="audio/mpeg" />
+    </audio>
+    <button id="musicToggle">🔊</button>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
