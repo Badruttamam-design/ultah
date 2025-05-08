@@ -283,6 +283,7 @@ function activateRomanticNightMode() {
       body.classList.add("romantic-night");
       toggleBtn.textContent = "🌙";
       moon.style.display = "block";
+      createStars();
       createShootingStar(); // Langsung satu kali
       starInterval = setInterval(createShootingStar, 10000); 
     } else {
@@ -290,6 +291,7 @@ function activateRomanticNightMode() {
       toggleBtn.textContent = "☀️";
       moon.style.display = "none";
       clearInterval(starInterval);
+      document.querySelectorAll(".star").forEach(star => star.remove());
     }
   }
 
