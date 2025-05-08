@@ -191,31 +191,39 @@ function fireConfetti() {
 
 function createHearts() {
   const container = document.getElementById("hearts-container");
-  const heartCount = 30;
+  const heartCount = 20;
 
-  // Hitung umur saat ini
-  const birthYear = 2006; // Ganti sesuai tahun lahir
+  const birthYear = 2006;
   const currentYear = new Date().getFullYear();
   const birthdayNumber = currentYear - birthYear;
-  const userName = ("Amelia");
+  const userName = "Amelia";
 
   for (let i = 0; i < heartCount; i++) {
     const heart = document.createElement("div");
     heart.classList.add("heart");
 
-    // 30% hati akan bawa angka ulang tahun
     const showNumber = Math.random() < 0.3;
     heart.innerHTML = showNumber
-      ? `❤️<div class="birthday-number">${birthdayNumber} ${userName}</div>`
-      : `❤️`;
+    ? `❤️<div class="birthday-number">${birthdayNumber} ${userName}</div>`
+    : `❤️`;
+  
+    // Ukuran font hati
+    const fontSize = 50 + Math.random() * 50;
+    heart.style.fontSize = `${fontSize}px`;
 
-    heart.style.left = `${Math.random() * 100}vw`;
+    // Ukuran layar dihitung agar hati tidak mepet keluar
+    const maxLeft = window.innerWidth - fontSize;
+    const maxTop = window.innerHeight - fontSize;
+
+    heart.style.left = `${Math.random() * maxLeft}px`;
+    heart.style.top = `${Math.random() * maxTop}px`;
+
     heart.style.animationDuration = `${5 + Math.random() * 10}s`;
-    heart.style.fontSize = `${15 + Math.random() * 100}px`;
 
     container.appendChild(heart);
   }
 }
+window.addEventListener("load", createHearts)
 
 
 function createStars() {
@@ -237,11 +245,21 @@ function createBubbles() {
   for (let i = 0; i < bubbleCount; i++) {
     const bubble = document.createElement("div");
     bubble.classList.add("bubble");
-    bubble.style.left = `${Math.random() * 100}vw`;
-    bubble.style.width = `${10 + Math.random() * 500}px`;
-    bubble.style.height = bubble.style.width;
+
+    // Ukuran bubble
+    const bubbleSize = 10 + Math.random() * 500; // max 100px, jangan 500 di HP
+    bubble.style.width = `${bubbleSize}px`;
+    bubble.style.height = `${bubbleSize}px`;
+
+    // Hitung batas kiri supaya nggak keluar layar
+    const maxLeft = window.innerWidth - bubbleSize;
+    const left = Math.random() * maxLeft;
+    bubble.style.left = `${left}px`;
+
+    // Animasi
     bubble.style.animationDuration = `${10 + Math.random() * 20}s`;
     bubble.style.animationDelay = `${Math.random() * 10}s`;
+
     document.body.appendChild(bubble);
   }
 }

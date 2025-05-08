@@ -381,6 +381,17 @@ header {
   animation: floatUp 5s linear infinite;
 }
 
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* agar elemen lain bisa diklik */
+  overflow: hidden;
+  z-index: -1;
+}
+
 /* ========== INTRO SCREEN ========== */
 #intro {
   position: fixed;
