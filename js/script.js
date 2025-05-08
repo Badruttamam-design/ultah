@@ -38,16 +38,18 @@ function showBirthdayMessage() {
   document.getElementById("question").style.display = "none";
   document.getElementById("ucapan").style.display = "block";
   document.getElementById("birthdayMessage").style.display = "block";
+  document.getElementById("hearts-container").style.display = "block";
+
 
   // Hitung umur
   const birthYear = 2006; // Ganti sesuai tahun lahir
   const currentYear = new Date().getFullYear();
   const birthdayNumber = currentYear - birthYear;
-
+  const userName = ("Amelia");
   // Update pesan ulang tahun
   document.getElementById(
     "birthdayNumberText"
-  ).innerHTML = `Semoga Allah selalu memberkahimu, memberimu kesehatan, kebahagiaan, dan segala hal baik yang kau impikan. Selamat ulang tahun ke-<span style="color: var(--pink); font-weight: bold;">${birthdayNumber}</span> Sayangku`;
+  ).innerHTML = `Semoga Allah selalu memberkahimu, memberimu kesehatan, kebahagiaan, dan segala hal baik yang kau impikan. Selamat ulang tahun ke <span style="color: var(--pink);font-size:22px; font-weight: bold; font-family: 'Pacifico', cursive;">${birthdayNumber} ${userName}</span> 🎉💖💞 Sayangku`;
 
   // Mainkan musik latar
   const bgMusic = document.getElementById("bgMusic");
@@ -64,6 +66,7 @@ function showBirthdayMessage() {
   musicPlaying = true;
 
   fireConfetti();
+  createHearts()
 }
 
 
@@ -71,7 +74,6 @@ function showCryGif() {
   const cryGif = document.getElementById("cryGif");
   cryGif.style.display = "block";
   setTimeout(() => (cryGif.style.display = "none"), 3000);
-  fireConfetti();
 }
 
 function showGallery() {
@@ -132,7 +134,7 @@ function showCountdown() {
 
     if (distance < 0) {
       clearInterval(interval);
-      countdownTimer.innerHTML = "HARI INI ULANG TAHUNMU! ❤️❤️❤️ 🎉";
+      countdownTimer.innerHTML = "HARI INI ULANG TAHUNMU SAYANG ❤️❤️🎉";
     }
   }, 1000);
   fireConfetti();
@@ -195,6 +197,7 @@ function createHearts() {
   const birthYear = 2006; // Ganti sesuai tahun lahir
   const currentYear = new Date().getFullYear();
   const birthdayNumber = currentYear - birthYear;
+  const userName = ("Amelia");
 
   for (let i = 0; i < heartCount; i++) {
     const heart = document.createElement("div");
@@ -203,7 +206,7 @@ function createHearts() {
     // 30% hati akan bawa angka ulang tahun
     const showNumber = Math.random() < 0.3;
     heart.innerHTML = showNumber
-      ? `❤️<div class="birthday-number">${birthdayNumber}</div>`
+      ? `❤️<div class="birthday-number">${birthdayNumber} ${userName}</div>`
       : `❤️`;
 
     heart.style.left = `${Math.random() * 100}vw`;
@@ -242,4 +245,62 @@ function createBubbles() {
     document.body.appendChild(bubble);
   }
 }
+
+// ========== ROMANTIC NIGHT MODE ========== //
+function activateRomanticNightMode() {
+  const hour = new Date().getHours();
+  const body = document.body;
+  const toggleBtn = document.getElementById("toggleNightMode");
+  const moon = document.getElementById("moon");
+
+  let starInterval;
+
+  function createShootingStar() {
+    const star = document.createElement("div");
+    star.classList.add("shooting-star");
+  
+    // Atur posisi awal di luar layar kanan
+    star.style.right = `-100px`;
+    star.style.top = `${Math.random() * 100}px`;
+  
+    // Variasi kecepatan
+    const duration = Math.random() * 1 + 1.5;
+    star.style.animationDuration = `${duration}s`;
+  
+    // Variasi kemiringan
+    const rotation = -15 + (Math.random() * 10 - 5);
+    star.style.transform = `rotate(${rotation}deg)`;
+  
+    document.body.appendChild(star);
+  
+    setTimeout(() => {
+      star.remove();
+    }, duration * 1000);
+  }
+
+  function setNightMode(on) {
+    if (on) {
+      body.classList.add("romantic-night");
+      toggleBtn.textContent = "🌙";
+      moon.style.display = "block";
+      createShootingStar(); // Langsung satu kali
+      starInterval = setInterval(createShootingStar, 10000); 
+    } else {
+      body.classList.remove("romantic-night");
+      toggleBtn.textContent = "☀️";
+      moon.style.display = "none";
+      clearInterval(starInterval);
+    }
+  }
+
+  setNightMode(hour >= 18 || hour < 6);
+
+  // Toggle manual
+  toggleBtn.addEventListener("click", () => {
+    const isNight = !body.classList.contains("romantic-night");
+    setNightMode(isNight);
+  });
+}
+activateRomanticNightMode();
+
 
